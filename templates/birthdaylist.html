@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<br>
+
+ <h1 style="text-align: center;" class="pb-4 border-bottom"><span>Doğum Günleri</span></h1>
+
+
+                    <a href="/dashboard"><button type="button" class="btn btn-primary btn-block">Doğum günü
+                            eklemek için
+                            tıkla</button></a> 
+
+<div class="section full-height" style="height: 400px;">
+    <div class="absolute-center">
+        <div class="section">
+            <span>
+                <div class="wrapper mt-sm-5" style="max-width: 900px;">
+                    {% if days == [] %}
+                    <div style="text-align: center;" class="alert alert-warning" role="alert">
+                        Şu an hiçbir doğum günü yok!
+                    </div>
+                    {% else %}
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">İsim</th>
+                                <th scope="col">Soyisim</th>
+                                <th scope="col">Doğum günü</th>
+                            </tr>
+                        </thead>
+                        <br>
+                        <tbody>
+
+                            {% for birthday in birthdays %}
+                            <tr>
+                                <th scope="row">{{birthday.id}}</th>
+                                <th scope="row">{{birthday.name}}</th>
+                                <th scope="row">{{birthday.surname}}</th>
+                                <th scope="row">{{birthday.birthday}}</th>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock body%}

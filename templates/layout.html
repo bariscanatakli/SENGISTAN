@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/form.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/navbar.css') }}" />
+    <title>SENGISTAN</title>
+    
+</head>
+
+<body >
+    
+    {% include "includes/navbar.html" %}
+    <br><br><br>
+
+    <div class='container'>
+        {% include "includes/messages.html" %}
+
+        {% block body %}
+
+        {% endblock body %}
+    </div>
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
+<script>
+
+    
+
+/* Please ❤ this if you like it! */
+
+
+(function($) { "use strict";
+
+$(function() {
+    var header = $(".start-style");
+    $(window).scroll(function() {    
+        var scroll = $(window).scrollTop();
+    
+        if (scroll >= 10) {
+            header.removeClass('start-style').addClass("scroll-on");
+        } else {
+            header.removeClass("scroll-on").addClass('start-style');
+        }
+    });
+});		
+    
+//Animation
+
+$(document).ready(function() {
+    $('body.hero-anime').removeClass('hero-anime');
+});
+
+//Menu On Hover
+    
+$('body').on('mouseenter mouseleave','.nav-item',function(e){
+        if ($(window).width() > 750) {
+            var _d=$(e.target).closest('.nav-item');_d.addClass('show');
+            setTimeout(function(){
+            _d[_d.is(':hover')?'addClass':'removeClass']('show');
+            },1);
+        }
+});	
+
+//Switch light/dark
+$("#switch").on('click', function () {
+    if ($("body").hasClass("dark")) {
+        $("body").removeClass("dark");
+        $("#switch").removeClass("switched");
+    }
+    else {
+        $("body").addClass("dark");
+        $("#switch").addClass("switched");
+    }
+});  
+
+})(jQuery); 
+</script>
+</html>

@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+
+<br><br><br> <br><br><br> <br><br><br>
+<br><br><br> <br> 
+
+
+<div class="section full-height" style="height: 500px;">
+  <div class="absolute-center">
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            
+            <h1><span>Profilinize hoş geldiniz. {{session.name}}</span></h1>
+            <p>İyi günler dileriz.</p>
+            <span>
+              <form method="POST">
+
+                <div class="wrapper mt-sm-5">
+                  <h4 style="text-align: center;" class="pb-4 border-bottom">Profil</h4>
+                  <div class="d-flex align-items-start py-3 border-bottom"> <img
+                      src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                      class="img" alt="">
+                    <div class="pl-sm-4 pl-2" id="img-section"> <b>Profil Fotoğrafı</b>
+                      <p>Profil fotoğrafınız 1 MB'dan küçük ve .jpg uzantılı olmalıdır.</p> <button
+                        class="btn button border"><b>Yükle</b></button>
+                    </div>
+                  </div>
+                  <div class="py-2">
+                    <div class="row py-2">
+                      <div class="col-md-6">
+                        {{ render_field(form.name,class = "bg-light form-control")}} </div>
+                      <div class="col-md-6 pt-md-0 pt-3">
+                        {{ render_field(form.surname,class = "bg-light form-control")}} </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col-md-6">
+                        {{ render_field(form.email,class = "bg-light form-control")}} </div>
+                      <div class="col-md-6 pt-md-0 pt-3"> {{ render_field(form.telno,class = "bg-light form-control")}}
+                      </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col-md-6">
+                        {{ render_field(form.username,class = "bg-light form-control")}} </div>
+                      <div class="col-md-6 pt-md-0 pt-3">
+                        {{ render_field(form.birthday,class = "bg-light form-control")}} </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col-md-6">
+                        {{ render_field(form.education,class = "bg-light form-control")}} </div>
+                      <div class="col-md-6 pt-md-0 pt-3">
+                        {{ render_field(form.section,class = "bg-light form-control")}} </div>
+                    </div>
+                    <div class="row py-2">
+                      <div class="col-md-6"> {{ render_field(form.country,class = "bg-light form-control")}} </div>
+                      <div class="col-md-6 pt-md-0 pt-3" id="lang">
+                        {{ render_field(form.language,class = "bg-light form-control")}} </div>
+                    </div>
+                  </div>
+                  <div class="py-3 pb-4 border-bottom"> <button type="submit"
+                      class="btn btn-primary mr-3">Değişiklikleri Kaydet</button> <button
+                      class="btn border button">Kapat</button> </div>
+                  <div class="d-sm-flex align-items-center pt-3" id="deactivate">
+                    <div> <b>Hesabını sil</b>
+                      <p>Dikkatli olun. Bu işlem hesabınızı siler</p>
+                    </div>
+                    <div class="ml-auto"> <button class="btn danger">Hesabı sil</button> </div>
+                  </div>
+                </div>
+          </div>
+
+          </form>
+
+
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+{% endblock body %}

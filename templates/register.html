@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+<div class="section full-height" style="height: 600px;">
+    <div class="absolute-center">
+        <div class="section">
+            <span>
+                <form method="POST">
+                    <div class="wrapper mt-sm-5">
+                        <h1 style="text-align: center;" class="pb-4 border-bottom"><span>Kayıt Ol</span></h1>
+                        <div class="py-3" style="text-align: center;">
+                            <div class="row py-3">
+                                <div class="col-md-12">
+                                    {{ render_field(form.username,class = "bg-light form-control")}} </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col-md-12">
+                                    {{ render_field(form.email,class = "bg-light form-control")}} </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col-md-12">
+                                    {{ render_field(form.password,class = "bg-light form-control")}} </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col-md-12">
+                                    {{ render_field(form.confirm,class = "bg-light form-control")}} </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Kayıt ol</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
