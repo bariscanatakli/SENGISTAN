@@ -30,15 +30,25 @@
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="/birthdaylist">Doğum Tarihleri</a>
 								</li>
+								{% if session['logged_in'] %}
+								{% else %}
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="/login">Giriş Yap</a>
 								</li>
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="/register">Kayıt ol</a>
 								</li>
-								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+								{% endif %}
+								{% if session['logged_in'] %}<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="/dashboard">Profil</a>
 								</li>
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link" href="/logout">Çıkış Yap</a>
+								</li>
+								{% endif %}
+								
+								
+								
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
 										aria-haspopup="true" aria-expanded="false">Bloglar</a>

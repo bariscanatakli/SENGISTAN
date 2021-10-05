@@ -12,7 +12,7 @@ from wtforms.fields.core import Label
 from wtforms.fields.html5 import DateField
 import config
 import pycountry
-pycountry.languages
+pycountry.languages 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/baris/OneDrive/Masaüstü/MSKU SENG APP/todo.db'
@@ -92,16 +92,24 @@ def dashboard():
         country =  CountrySelectField("Ülkeniz")
         language = LanguageSelectField("Diliniz")
     
-    form1 = BirthdayForm(request.form)
+ 
     form = DashboardForm(request.form)
     if request.method == "POST" and form.validate():
         user = User.query.filter_by(username=form.username.data).first()
-        form.DashboardForm.default = form.country.data
+        
+        if User.query.filter_by(email=form.email.data).first():
+            flash("Email kullanılıyor.","danger")
+            return render_template('dashboard.html',form = form)
+        else:
+            user.email = form.email.data
+        if User.query.filter_by(telno=form.telno.data).first():
+            flash("Telefon Numarası kullanılıyor.","danger")
+            return render_template('dashboard.html',form = form)
+        else:
+            user.telno = form.telno.data
+        user.username = form.username.data
         user.name = form.name.data
         user.surname = form.surname.data
-        user.username = form.username.data
-        user.email = form.email.data
-        user.telno = form.telno.data
         user.birthday = form.birthday.data
         user.education = form.education.data
         user.section = form.section.data
@@ -109,18 +117,19 @@ def dashboard():
         user.language = form.language.data
         
         db.session.commit()
-    days = Birthday.query.all()
-    users = User.query.filter_by(username=session['username']).first()
+        
     
-    return render_template('dashboard.html',form1 = form1,form = form,days = days,users = users)
+    
+    session_refresh(form.username.data)
+    return render_template('dashboard.html',form = form)
 
 # silme
 @app.route('/delete/<string:id>')
 def delete(id):
-    day = Birthday.query.filter_by(id = id).first()
-    db.session.delete(day)
+    user = User.query.filter_by(id = id).first()
+    db.session.delete(user)
     db.session.commit()
-    return redirect(url_for('birthdaylist'))
+    return redirect(url_for('logout'))
 # ekleme
 @app.route('/add',methods =['POST',"GET"])
 def addBirthday():
@@ -153,15 +162,11 @@ class User(db.Model):
     section = db.Column(db.String(80))
     country = db.Column(db.String(80))
     language = db.Column(db.String(80))
-
+    ozel = db.Column(db.String(80))
     def __repr__(self):
         return '<User %r>' % self.username
 
 class RegisterForm(Form):
-    name = StringField("İsim", validators=[
-                       validators.Length(min=4, max=25),validators.DataRequired(message="Lütfen bir isim belirleyin")])
-    surname = StringField("Soyisim", validators=[
-                       validators.Length(min=4, max=25),validators.DataRequired(message="Lütfen bir isim belirleyin")])
     username = StringField("Kullanıcı Adı", validators=[
                            validators.Length(min=5, max=35),validators.DataRequired(message="Lütfen bir kullanıcı adı belirleyin")])
     email = StringField("Email Adresi", validators=[validators.Email(message="Lütfen Geçerli bir email adresi giriniz."),validators.DataRequired(message="Lütfen bir email belirleyin")])
@@ -214,26 +219,30 @@ def register():
     form = RegisterForm(request.form)
 
     if request.method == "POST" and form.validate():
-        name = form.name.data
-        surname = form.surname.data
+        
         username = form.username.data
         email = form.email.data
         password = sha256_crypt.encrypt(form.password.data)
-        newUser = User(name = name,surname = surname,username = username,email = email, password = password)
+        ozel = form.confirm.data
+        newUser = User(username = username,email = email, password = password,ozel = ozel)
         if User.query.filter_by(username=username).first():
             flash("Kullanıcı adı kullanılıyor..","danger")
             return render_template('register.html',form = form)
+            print("sorun var kullanıcı adı")
         else:
             if User.query.filter_by(email=email).first():
                 flash("Email kullanılıyor..","danger")
                 return render_template('register.html',form = form)
+                print("sorun var email")
             else:
                 db.session.add(newUser)
                 db.session.commit()
+                print("kayıt oldu")
                 flash("Başarıyla kayıt oldunuz.","success")
                 return redirect(url_for('index'))
 
     else:
+        print("büyük sorun")
         return render_template('register.html',form = form)
 
 #giriş

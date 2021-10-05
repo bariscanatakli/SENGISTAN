@@ -35,13 +35,17 @@
                         <tbody>
 
                             {% for birthday in birthdays %}
-                            <tr>
+                            {% if birthday.name and birthday.surname and birthday.birthday %}
+                             <tr>
                                 <th scope="row">{{birthday.id}}</th>
                                 <th scope="row">{{birthday.name}}</th>
                                 <th scope="row">{{birthday.surname}}</th>
                                 <th scope="row">{{birthday.birthday}}</th>
 
                             </tr>
+                            {% endif %}
+
+                           
                             {% endfor %}
                         </tbody>
                     </table>
