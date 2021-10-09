@@ -1,19 +1,12 @@
-
-from flask import Flask, render_template, flash, redirect, url_for, session, logging, request
-from sqlalchemy.orm import defaultload
+from flask import Flask, render_template, flash, redirect, url_for, session,request
 from datetime import datetime
-from wtforms import Form, StringField, TextAreaField, PasswordField, form, validators,SelectField,IntegerField,FormField
+from wtforms import Form, StringField, TextAreaField, PasswordField,validators,SelectField
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import sha256_crypt
 from functools import wraps
-from django.forms import widgets
-import pycountry
-from wtforms.fields.core import Label
 from wtforms.fields.html5 import DateField
 import config
 
-import pycountry
-pycountry.languages 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/baris/OneDrive/Masaüstü/MSKU SENG APP/todo.db'
