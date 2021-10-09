@@ -11,6 +11,7 @@ from django.forms import widgets
 import pycountry
 from wtforms.fields.core import Label
 from wtforms.fields.html5 import DateField
+import config
 
 import pycountry
 pycountry.languages 
