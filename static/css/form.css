@@ -14,11 +14,16 @@ body {
 .wrapper {
     color: rgb(117, 159, 214);
     padding: 30px 50px;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(96, 24, 212, 0.3);
     border-radius: 15px;
     margin: 10px auto;
     max-width: 600px;
     background-color: transparent;
+    box-shadow: 0 4px 8px 0 rgba(96, 24, 212, 0.2), 0 6px 20px 0 rgba(96, 24, 212, 0.2);
+}
+
+.post {
+    color: gray;
 }
 
 h4 {
@@ -29,7 +34,7 @@ h4 {
 .img {
     width: 70px;
     height: 70px;
-    border-radius: 6px;
+    border-radius: 15px;
     object-fit: cover
 }
 

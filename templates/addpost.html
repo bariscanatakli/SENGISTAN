@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+
+
+<div class="section">
+    <form method="POST">
+        <div class="wrapper mt-sm-5">
+            <h1 style="text-align: center;" class="pb-4 border-bottom"><span>Post Paylaş</span></h1>
+            <div class="py-3" style="text-align: center;">
+                <div class="row py-3">
+                    <div class="col-md-12">
+                        {{ render_field(form.area,class = "bg-light form-control")}} </div>
+                </div>
+                
+                <div class="row py-3">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Paylaş</button> </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'area' );
+</script>
+{% endblock body %}

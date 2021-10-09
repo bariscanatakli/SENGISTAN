@@ -471,12 +471,12 @@
 		color: #fff;
 		background-color: rgba(129, 103, 169, .6);
 	}
-
+	
 	body.dark {
 		color: #fff;
 		background-color: #1f2029;
 	}
-
+	
 	body.dark .navbar-brand img {
 		filter: brightness(100%);
 	}

@@ -1,7 +1,8 @@
+from operator import pos
 from typing import DefaultDict
 from flask import Flask, render_template, flash, redirect, url_for, session, logging, request
 from sqlalchemy.orm import defaultload
-
+from datetime import datetime
 from wtforms import Form, StringField, TextAreaField, PasswordField, form, validators,SelectField,IntegerField,FormField
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import sha256_crypt
@@ -130,24 +131,6 @@ def delete(id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for('logout'))
-# ekleme
-@app.route('/add',methods =['POST',"GET"])
-def addBirthday():
-    form = BirthdayForm(request.form)
-    birthday = form.birthday.data
-    num_rows_updated = User.query.filter_by(username=session['username']).update(dict(birthday=birthday))
-    
-    db.session.commit()
-    return redirect(url_for('dashboard'))
-
-class Birthday(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    birthday = db.Column(db.String(80))
-    
-class BirthdayForm(Form):
-    birthday = StringField("Doğum Tarihiniz", validators=[
-                       validators.Length(min=10, max=25),validators.DataRequired(message="Lütfen bir isim belirleyin")])
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -166,6 +149,16 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    post = db.Column(db.String(80))
+    name = db.Column(db.String(80))
+    surname = db.Column(db.String(80))
+    time = db.Column(db.String(80))
+    section = db.Column(db.String(80))
+    def __repr__(self):
+        return '<Post %r>' % self.time
+
 class RegisterForm(Form):
     username = StringField("Kullanıcı Adı", validators=[
                            validators.Length(min=5, max=35),validators.DataRequired(message="Lütfen bir kullanıcı adı belirleyin")])
@@ -183,6 +176,10 @@ class LoginForm(Form):
     password = PasswordField("Parola", validators=[
         validators.DataRequired(message="Lütfen bir parola belirleyin"),
     ])
+
+class AddPostForm(Form):
+    area = text = TextAreaField('Text', render_kw={"rows": 10, "cols": 11})
+    
     
 #session yenileme"
 def session_refresh(usernameEntered):
@@ -272,7 +269,26 @@ def login():
             return render_template("login.html",form = form)  
 
     return render_template("login.html",form = form)
+@app.route("/addpost",methods = ["GET","POST"])
+@login_required
+def addpost():
+    form = AddPostForm(request.form)
+    if request.method == "POST" and form.validate():
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        post = form.area.data
+        newPost = Post(post = post,name = session['name'],surname = session['surname'],time = dt_string,section = session['section'])
+        db.session.add(newPost)
+        db.session.commit()
+        return redirect(url_for('blogs'))
+    return render_template("addpost.html",form = form)
 
+@app.route("/blogs")
+def blogs():
+    posts = Post.query.all()
+    posts.reverse()
+
+    return render_template("blogs.html",posts = posts)
 
 @app.route("/logout")
 def logout():

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% from "includes/formhelpers.html" import render_field %}
+
+
+
+<div class="section">
+
+
+    <h1 style="text-align: center;" class="pb-4 border-bottom"><span><a href="/addpost"><button class="btn btn-primary btn-lg btn-block">Post Paylaş</button></a>
+        
+       </span></h1>
+
+</div>
+
+{% for post in posts %}
+
+<div id="wrapper" class="mt-sm-5 wrapper" style="height: 500px;">
+    <div class="d-flex align-items-start py-3 border-bottom"> <img
+            src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            class="img" alt="">
+        <div class="pl-sm-4 pl-2" id="img-section"> <b>{{post.name}} {{post.surname}}</b>
+            <p>{{post.section}} - {{post.time}}</p>
+        </div>
+    </div>
+    <div class="post"> {{post.post|safe}}</div>
+</div>
+{% endfor %}
+
+
+
+
+</div>
+
+{% endblock body %}
