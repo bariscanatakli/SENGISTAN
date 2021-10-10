@@ -20,17 +20,17 @@
 {% for post in posts %}
 
 <div id="wrapper" class="mt-sm-5 wrapper" style="height: 600px;">
-    <div class="d-flex align-items-start py-3 border-bottom" style="height: 100px;"> <img
+    <div class="d-flex align-items-start py-3 border-bottom" style="height: 210px;"> <img
             src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             class="img" alt="">
         <div class="pl-sm-4 pl-3" id="img-section"> <b>{{post.name}}
                 {{post.surname}} - {{post.username}}</b>
                 <p>{{post.section}} - {{post.time}}</p>
             {% if session.username == post.username %}
-            <a style="position:relative; bottom:30px; left:255px;"  href="/editpost/{{post.id}}"><button style="height: 36px; width:80px" class="btn btn-info">Düzenle</button></a>
+            <a class="edit"  href="/editpost/{{post.id}}"><button style="height: 36px; width:80px" class="btn btn-info">Düzenle</button></a>
             {% endif %}
             {% if session.username == post.username %}
-            <a style="position:relative; bottom:70px; left:170px;" href="/dellpost/{{post.id}}"><button style="height: 36px; width:80px" class="btn btn-danger">Sil</button></a>
+            <a class="delete" href="/dellpost/{{post.id}}"><button style="height: 36px; width:80px" class="btn btn-danger">Sil</button></a>
             {% endif %}
              
         </div>
