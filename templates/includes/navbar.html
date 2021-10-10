@@ -1,12 +1,10 @@
-
 <body class="hero-anime">
 	<div class="navigation-wrap bg-light start-header start-style">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<nav class="navbar navbar-expand-md navbar-light">
-						<a class="navbar-brand" href="/"><img
-								src="/static/img/Adsız.png" alt=""></a>
+						<a class="navbar-brand" href="/"><img src="/static/img/Adsız.png" alt=""></a>
 						<button class="navbar-toggler" type="button" data-toggle="collapse"
 							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 							aria-expanded="false" aria-label="Toggle navigation">
@@ -21,8 +19,6 @@
 									<div id="switch">
 										<div id="circle"></div>
 									</div>
-
-
 								</li>
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="/">Anasayfa</a>
@@ -45,19 +41,27 @@
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="/logout">Çıkış Yap</a>
 								</li>
-								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+								<!-- <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="/addpost">Blog Ekle</a>
 								</li>
-								{% endif %}
-								
-								
-								
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link"  href="/blogs" role="button"
-										>Bloglar</a>
-									
+									<a class="nav-link" href="/myblogs">Bloglarım</a>
+								</li> -->
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Blog İşlemleri</a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="/addpost">Blog ekle</a>
+										<a class="dropdown-item" href="/myblogs">Bloglarım | Düzenle & Sil</a>
+										
+									</div>
 								</li>
+								{% endif %}
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link" href="/blogs" role="button">Bloglar</a>
+								</li>
+								
 							</ul>
+
 						</div>
 
 					</nav>

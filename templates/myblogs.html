@@ -2,19 +2,6 @@
 
 {% block body %}
 {% from "includes/formhelpers.html" import render_field %}
-
-
-
-<div class="section">
-
-
-    <h1 style="text-align: center;" class="pb-4 border-bottom"><span><a href="/addpost"><button
-                    class="btn btn-primary btn-lg btn-block">Post Paylaş</button></a>
-
-        </span></h1>
-
-</div>
-
 {% if posts %}
 
 {% for post in posts %}
@@ -45,4 +32,5 @@
 </div>
 {% endif %}
 </div>
+
 {% endblock body %}
