@@ -1,4 +1,3 @@
-from typing import Type
 from flask import Flask, render_template, flash, redirect, url_for, session, request
 from datetime import datetime
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SelectField
@@ -735,9 +734,10 @@ def register():
             else:
                 db.session.add(newUser)
                 db.session.commit()
+                session_refresh(username)
                 print("kayıt oldu")
                 flash("Başarıyla kayıt oldunuz.", "success")
-                return redirect(url_for('index'))
+                return redirect(url_for('dashboard'))
 
     else:
         print("büyük sorun")

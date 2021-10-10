@@ -11,6 +11,15 @@ body {
     background-color: aliceblue
 }
 
+.delete {
+    position:relative;
+    bottom:70px; left:170px;
+}
+.edit {
+    position:relative;
+    bottom:30px; left:255px;
+}
+
 .wrapper {
     color: rgb(117, 159, 214);
     padding: 30px 50px;
@@ -118,5 +127,13 @@ select:focus {
 
     #deactivate {
         line-height: 18px
+    }
+    .delete {
+        position:static;
+        
+    }
+    .edit {
+        position:static;
+        
     }
 }
